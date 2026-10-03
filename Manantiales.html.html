@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perfil Empresarial</title>
+<!--
+  CÓMO EDITAR ESTA PÁGINA
+  1. Textos: cambia el texto que está entre las etiquetas. Busca los comentarios que dicen EDITAR.
+  2. Imágenes: en cada <img src=""> escribe la ruta o la URL de tu foto, por ejemplo src="img/equipo.jpg".
+     Mientras src esté vacío se muestra un recuadro de ayuda.
+  3. Colores y tipografías: están al inicio del bloque <style>, dentro de :root.
+  4. Para añadir un elemento a una lista (valores, DOFA), copia una línea <li> o una tarjeta completa y pégala debajo.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Diseño: barra flotante de vidrio, portada en dos columnas, secciones en tarjetas de vidrio sobre manchas de color difuminadas. */
+:root {
+  --bg: #e9efed;
+  --fg: #13201e;
+  --muted: #4b605c;
+  --accent: #1d6b66;
+  --on-accent: #ffffff;
+  --accent-soft: rgba(29, 107, 102, 0.12);
+  --orb-a: #7fcdc2;
+  --orb-b: #f1d29f;
+  --orb-c: #a3bcdc;
+  --orb-o: 0.75;
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-solid: #f5f9f8;
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --hl: rgba(255, 255, 255, 0.6);
+  --line: rgba(19, 32, 30, 0.1);
+  --line-strong: rgba(19, 32, 30, 0.22);
+  --shadow: 0 10px 34px rgba(20, 50, 46, 0.1);
+  --c-f: #23917f;
+  --c-o: #3b7fc2;
+  --c-d: #cf9423;
+  --c-a: #cb5a58;
+  --f-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --f-body: 'Figtree', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a1211;
+    --fg: #e7f0ee;
+    --muted: #9db3af;
+    --accent: #6fd0c5;
+    --on-accent: #06201d;
+    --accent-soft: rgba(111, 208, 197, 0.14);
+    --orb-a: #1d6b66;
+    --orb-b: #6b5226;
+    --orb-c: #27406a;
+    --orb-o: 0.6;
+    --glass: rgba(255, 255, 255, 0.06);
+    --glass-solid: #131d1c;
+    --glass-border: rgba(255, 255, 255, 0.13);
+    --hl: rgba(255, 255, 255, 0.08);
+    --line: rgba(255, 255, 255, 0.1);
+    --line-strong: rgba(255, 255, 255, 0.24);
+    --shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
+    --c-f: #52c9b4;
+    --c-o: #6aa8e6;
+    --c-d: #e5b34c;
+    --c-a: #ee8582;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a1211;
+  --fg: #e7f0ee;
+  --muted: #9db3af;
+  --accent: #6fd0c5;
+  --on-accent: #06201d;
+  --accent-soft: rgba(111, 208, 197, 0.14);
+  --orb-a: #1d6b66;
+  --orb-b: #6b5226;
+  --orb-c: #27406a;
+  --orb-o: 0.6;
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-solid: #131d1c;
+  --glass-border: rgba(255, 255, 255, 0.13);
+  --hl: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.24);
+  --shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
+  --c-f: #52c9b4;
+  --c-o: #6aa8e6;
+  --c-d: #e5b34c;
+  --c-a: #ee8582;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  padding-inline: clamp(16px, 4vw, 32px);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+/* Fondo: manchas de color que dan algo que desenfocar al vidrio */
+.bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: var(--orb-o); }
+.orb.a { width: 46vmax; height: 46vmax; background: var(--orb-a); top: -14vmax; left: -10vmax; }
+.orb.b { width: 38vmax; height: 38vmax; background: var(--orb-b); top: 28vh; right: -12vmax; }
+.orb.c { width: 34vmax; height: 34vmax; background: var(--orb-c); bottom: -14vmax; left: 20vw; }
+
+.page { position: relative; z-index: 1; max-width: 1080px; margin-inline: auto; }
+
+/* Vidrio */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--shadow), inset 0 1px 0 var(--hl);
+  border-radius: 22px;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: var(--glass-solid); }
+}
+
+/* Barra superior */
+.nav {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  z-index: 20;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 20px;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); text-decoration: none; white-space: nowrap; }
+.mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-size: 0.95rem; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.nav ul::-webkit-scrollbar { display: none; }
+.nav li a { display: block; padding: 7px 13px; border-radius: 999px; color: var(--muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+.nav li a:hover { background: var(--accent-soft); color: var(--fg); }
+@media (max-width: 720px) {
+  .nav { position: static; border-radius: 22px; flex-wrap: wrap; padding: 12px; }
+  .nav ul { flex: 1 1 100%; }
+}
+
+/* Portada */
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 5vw, 56px); align-items: center; padding-block: clamp(40px, 8vw, 88px) clamp(24px, 4vw, 40px); }
+.hero > * { min-width: 0; }
+@media (max-width: 820px) { .hero { grid-template-columns: 1fr; } }
+.kicker { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 18px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -0.02em; line-height: 1.12; }
+h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
+.lead { margin: 20px 0 0; max-width: 46ch; font-size: 1.15rem; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { display: inline-block; padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: transform 0.2s, background 0.2s; }
+.btn:hover { transform: translateY(-1px); }
+.btn.primary { background: var(--accent); color: var(--on-accent); }
+.btn.ghost { color: var(--fg); background: var(--glass); border: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+
+/* Datos rápidos */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px 12px; padding: 12px 14px; margin: 0; }
+.facts div { padding: 12px 14px; min-width: 0; }
+.facts dt { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 4px 0 0; font-weight: 600; overflow-wrap: anywhere; }
+
+/* Secciones */
+.sec { padding-block: clamp(32px, 6vw, 64px); scroll-margin-top: 80px; }
+.sec-head { margin-bottom: clamp(20px, 3vw, 32px); }
+.sec-head h2 { font-size: clamp(1.6rem, 1rem + 2vw, 2.2rem); font-weight: 700; }
+.sec-head p { margin: 10px 0 0; max-width: 56ch; color: var(--muted); }
+.card { padding: clamp(20px, 3vw, 30px); }
+.card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+.card p { margin: 0; color: var(--muted); max-width: 62ch; }
+.split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(20px, 4vw, 44px); align-items: center; }
+.split > * { min-width: 0; }
+.prose p { margin: 0 0 1em; max-width: 62ch; }
+.prose p:last-child { margin-bottom: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.grid-values { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px; }
+.grid-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 20px; }
+@media (max-width: 820px) {
+  .split { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .grid-2 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Valores */
+.value h3 { font-size: 1.05rem; }
+.value p { font-size: 0.95rem; }
+
+/* DOFA */
+.dofa-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.dofa-h h3 { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.15rem; }
+.dofa-h h3::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+.tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line-strong); padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.list li { position: relative; padding-left: 20px; color: var(--fg); }
+.list li::before { content: ""; position: absolute; left: 0; top: 0.68em; width: 7px; height: 7px; border-radius: 2px; background: var(--c); }
+
+/* Espacios para imágenes */
+.slot { position: relative; margin: 0; aspect-ratio: 4 / 3; max-width: 100%; border-radius: 20px; overflow: hidden; border: 1px dashed var(--line-strong); background: repeating-linear-gradient(135deg, transparent 0 14px, var(--line) 14px 15px), var(--glass); }
+.slot.wide { aspect-ratio: 5 / 4; }
+.slot-hint { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 6px; padding: 16px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+.slot-hint svg { width: 30px; height: 30px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.slot-hint small { font-size: 0.78rem; opacity: 0.85; }
+.slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.slot img[src=""] { display: none; }
+.shot { margin: 0; display: grid; gap: 10px; }
+.shot figcaption { font-size: 0.9rem; color: var(--muted); }
+
+/* Contacto */
+.contact dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 22px 32px; margin: 0; }
+.contact dl > div { min-width: 0; }
+.contact dt { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.contact dd { margin: 4px 0 0; font-weight: 500; overflow-wrap: anywhere; user-select: text; }
+
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 28px 40px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
+</style>
+
+<div class="bg" aria-hidden="true"><span class="orb a"></span><span class="orb b"></span><span class="orb c"></span></div>
+
+<div class="page">
+
+  <!-- BARRA SUPERIOR. EDITAR: nombre de la empresa y la letra del logo -->
+  <header>
+    <nav class="nav glass" aria-label="Principal">
+      <a class="brand" href="#inicio"><span class="mark">N</span>Manantiales</a>
+      <ul>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#proposito">Misión y visión</a></li>
+        <li><a href="#valores">Valores</a></li>
+        <li><a href="#dofa">DOFA</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PORTADA. EDITAR: nombre, frase corta, datos rápidos e imagen principal -->
+    <section class="hero" id="inicio">
+      <div>
+        <p class="kicker">Perfil institucional</p>
+        <h1>Cooperativa Manantiales</h1>
+        <p class="lead">Una frase corta que resuma a qué se dedica la empresa y qué la hace distinta.</p>
+        <div class="actions">
+          <a class="btn primary" href="#nosotros">Conócenos</a>
+          <a class="btn ghost" href="#contacto">Contacto</a>
+        </div>
+      </div>
+      <figure class="slot wide">
+        <div class="slot-hint">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
+          Imagen principal
+          <small>Escribe la ruta en el src de esta imagen</small>
+        </div>
+        <img src="" alt="Imagen principal de la empresa" onerror="this.hidden = true">
+      </figure>
+    </section>
+
+    <!-- DATOS RÁPIDOS. EDITAR: cambia los valores o añade otro bloque <div> con dt y dd -->
+    <dl class="facts glass">
+      <div><dt>Fundación</dt><dd>Abril 1998</dd></div>
+      <div><dt>Sector</dt><dd>Mercado de servicios</dd></div>
+      <div><dt>Sede</dt><dd>Carmen de viboral, Colombia</dd></div>
+      <div><dt>Equipo</dt><dd>00 personas</dd></div>
+    </dl>
+
+    <!-- NOSOTROS. EDITAR: descripción de la empresa e imagen -->
+    <section class="sec" id="nosotros">
+      <div class="split">
+        <div>
+          <div class="sec-head"><h2>Quiénes somos</h2></div>
+          <div class="prose">
+            <p>Aquí va la descripción general de la empresa: quiénes son, a qué se dedican y cómo nació la idea. Dos o tres frases son suficientes para empezar.</p>
+            <p>Puedes añadir un segundo párrafo con su historia, los productos o servicios principales y el tipo de clientes que atienden.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MISIÓN Y VISIÓN. EDITAR: ambos textos -->
+    <section class="sec" id="proposito">
+      <div class="sec-head"><h2>Misión y visión</h2></div>
+      <div class="grid-2">
+        <article class="card glass">
+          <h3>Misión</h3>
+          <p>Cooperativa Manantiales es una organización dedicada a la producción, ensamble, empaque y distribución de productos manufactureros, comprometida con las necesidades de nuestros clientes con altos estándares de calidad, asegurando la mejora continua, lo que garantiza nuestra permanencia en el mercado y el bienestar de nuestros asociados 
+</p>
+        </article>
+        <article class="card glass">
+          <h3>Visión</h3>
+          <p>Ser reconocida en el año 2027 como una Cooperativa líder en el mercado, contando con un grupo de asociados calificados, dinámicos y competitivos a través de tecnología de avanzada y capacitación permanente. A la vez soportar nuestra gestión a través de procesos calificados, los cuales se convierten en herramientas orientadoras de apoyo para la planificación, ejecución, verificación y mejora continua de nuestros procesos.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- VALORES. EDITAR: títulos y frases. Para añadir uno, copia una tarjeta <article> completa -->
+    <section class="sec" id="valores">
+      <div class="sec-head"><h2>Valores</h2></div>
+      <div class="grid-values">
+        <article class="card value glass"><h3>Compromiso</h3><p>Cumplir lo que se promete a clientes y equipo.</p></article>
+        <article class="card value glass"><h3>Integridad</h3><p>Actuar con transparencia en cada decisión.</p></article>
+        <article class="card value glass"><h3>Innovación</h3><p>Buscar mejores formas de resolver problemas.</p></article>
+        <article class="card value glass"><h3>Colaboración</h3><p>Trabajar en conjunto para lograr más.</p></article>
+      </div>
+    </section>
+
+    <!-- MATRIZ DOFA. EDITAR: cada punto es una línea <li>. Fortalezas y debilidades son internas; oportunidades y amenazas, externas -->
+    <section class="sec" id="dofa">
+      <div class="sec-head">
+        <h2>Matriz DOFA</h2>
+        <p>Debilidades y fortalezas vienen de dentro de la empresa. Amenazas y oportunidades vienen del entorno.</p>
+      </div>
+      <div class="grid-2">
+        <article class="card glass" style="--c: var(--c-f)">
+          <div class="dofa-h"><h3>Fortalezas</h3><span class="tag">Interno</span></div>
+          <ul class="list">
+            <li>Equipo con experiencia en el sector</li>
+            <li>Relación cercana con los clientes</li>
+            <li>Procesos internos bien definidos</li>
+          </ul>
+        </article>
+        <article class="card glass" style="--c: var(--c-d)">
+          <div class="dofa-h"><h3>Debilidades</h3><span class="tag">Interno</span></div>
+          <ul class="list">
+            <li>Recursos limitados para marketing</li>
+            <li>Dependencia de pocos clientes</li>
+            <li>Procesos que aún se hacen a mano</li>
+          </ul>
+        </article>
+        <article class="card glass" style="--c: var(--c-o)">
+          <div class="dofa-h"><h3>Oportunidades</h3><span class="tag">Externo</span></div>
+          <ul class="list">
+            <li>Crecimiento de la demanda en el mercado</li>
+            <li>Nuevas herramientas digitales disponibles</li>
+            <li>Alianzas posibles con otras empresas</li>
+          </ul>
+        </article>
+        <article class="card glass" style="--c: var(--c-a)">
+          <div class="dofa-h"><h3>Amenazas</h3><span class="tag">Externo</span></div>
+          <ul class="list">
+            <li>Competidores con más presencia</li>
+            <li>Cambios en la regulación</li>
+            <li>Variaciones en la economía</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALERÍA. EDITAR: pon la ruta de cada foto en src y cambia el texto del pie. Copia un bloque <figure class="shot"> para añadir más -->
+    <section class="sec" id="galeria">
+      <div class="sec-head">
+        <h2>Galería</h2>
+        <p>Fotos del equipo, las instalaciones o los productos.</p>
+      </div>
+      <div class="grid-shots">
+        <figure class="shot">
+          <div class="slot">
+            <div class="slot-hint">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
+              Foto 1
+            </div>
+            <img src="" alt="Foto 1" loading="lazy" onerror="this.hidden = true">
+          </div>
+          <figcaption>Descripción de la foto 1</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="slot">
+            <div class="slot-hint">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
+              Foto 2
+            </div>
+            <img src="" alt="Foto 2" loading="lazy" onerror="this.hidden = true">
+          </div>
+          <figcaption>Descripción de la foto 2</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="slot">
+            <div class="slot-hint">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
+              Foto 3
+            </div>
+            <img src="" alt="Foto 3" loading="lazy" onerror="this.hidden = true">
+          </div>
+          <figcaption>Descripción de la foto 3</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CONTACTO. EDITAR: datos de contacto -->
+    <section class="sec" id="contacto">
+      <div class="sec-head"><h2>Contacto</h2></div>
+      <div class="card contact glass">
+        <dl>
+          <div><dt>Sede</dt><dd>Carmen de Viboral, Colombia</dd></div>
+          <div><dt>Correo</dt><dd>contacto@manantiales.com</dd></div>
+          <div><dt>Teléfono</dt><dd>+57 000 000 0000</dd></div>
+        </dl>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE. EDITAR: nombre y año -->
+  <footer class="foot">
+    <span>© 2026 Nombre de la Empresa</span>
+    <span>Todos los derechos reservados</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
