@@ -146,8 +146,7 @@ a { color: var(--accent); }
   padding: 8px 12px;
   border-radius: 999px;
 }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); text-decoration: none; white-space: nowrap; }
-.mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-size: 0.95rem; }
+.brand { font-size: 35px; display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); text-decoration: none; white-space: nowrap; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
 .nav ul::-webkit-scrollbar { display: none; }
 .nav li a { display: block; padding: 7px 13px; border-radius: 999px; color: var(--muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; white-space: nowrap; transition: background 0.2s, color 0.2s; }
@@ -171,6 +170,10 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 .btn:hover { transform: translateY(-1px); }
 .btn.primary { background: var(--accent); color: var(--on-accent); }
 .btn.ghost { color: var(--fg); background: var(--glass); border: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+
+/* Logo circular de la portada (recorta el margen oscuro de la imagen sin modificar el logo) */
+.hero-logo { margin: 0; justify-self: center; width: min(100%, 420px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #fff; box-shadow: var(--shadow), 0 0 0 6px var(--glass), 0 0 0 7px var(--glass-border); }
+.hero-logo img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.16); transform-origin: 50% 52%; }
 
 /* Datos rápidos */
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px 12px; padding: 12px 14px; margin: 0; }
@@ -232,15 +235,17 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 28px 40px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
 </style>
+</head>
+<body>
 
 <div class="bg" aria-hidden="true"><span class="orb a"></span><span class="orb b"></span><span class="orb c"></span></div>
 
 <div class="page">
 
-  <!-- BARRA SUPERIOR. EDITAR: nombre de la empresa y la letra del logo -->
+  <!-- BARRA SUPERIOR. EDITAR: nombre de la empresa -->
   <header>
     <nav class="nav glass" aria-label="Principal">
-      <a class="brand" href="#inicio"><span class="mark">N</span>Manantiales</a>
+      <a class="brand" href="#inicio">Manantiales</a>
       <ul>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#proposito">Misión y visión</a></li>
@@ -254,7 +259,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 
   <main>
 
-    <!-- PORTADA. EDITAR: nombre, frase corta, datos rápidos e imagen principal -->
+    <!-- PORTADA. EDITAR: nombre, frase corta, datos rápidos y logo (ruta en el src de la imagen) -->
     <section class="hero" id="inicio">
       <div>
         <p class="kicker">Perfil institucional</p>
@@ -265,13 +270,8 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
           <a class="btn ghost" href="#contacto">Contacto</a>
         </div>
       </div>
-      <figure class="slot wide">
-        <div class="slot-hint">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
-          Imagen principal
-          <small>Escribe la ruta en el src de esta imagen</small>
-        </div>
-        <img src="" alt="Imagen principal de la empresa" onerror="this.hidden = true">
+      <figure class="hero-logo">
+        <img src="logo.jpeg" alt="Logo de Cooperativa Manantiales">
       </figure>
     </section>
 
@@ -280,7 +280,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
       <div><dt>Fundación</dt><dd>Abril 1998</dd></div>
       <div><dt>Sector</dt><dd>Mercado de servicios</dd></div>
       <div><dt>Sede</dt><dd>Carmen de viboral, Colombia</dd></div>
-      <div><dt>Equipo</dt><dd>00 personas</dd></div>
+      <div><dt>Equipo</dt><dd>70 personas</dd></div>
     </dl>
 
     <!-- NOSOTROS. EDITAR: descripción de la empresa e imagen -->
@@ -289,11 +289,13 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
         <div>
           <div class="sec-head"><h2>Quiénes somos</h2></div>
           <div class="prose">
-            <p>Aquí va la descripción general de la empresa: quiénes son, a qué se dedican y cómo nació la idea. Dos o tres frases son suficientes para empezar.</p>
-            <p>Puedes añadir un segundo párrafo con su historia, los productos o servicios principales y el tipo de clientes que atienden.</p>
+            
+            <p>La Cooperativa Manantiales nació en abril de 1998 con un espíritu de servicio y entrega a la comunidad. Soñábamos con ser una gran empresa confeccionista, pero el mercado nos llevó a los servicios: empezamos con la limpieza de huevos para la Empresa Avícola Nacional y crecimos con Colombiana Kimberly Colpapel y Corona, en labores de empaque y procesos logísticos.</p>
+            <p>En 2012 retomamos nuestro sueño y volvimos a la confección de ropa interior y exterior, tejido plano, tejido de punto y vestidos de baño, con clientes como Leonisa, Línea Directa, Stop, Matelsa y Maagic. En 2017 iniciamos el modelo de full pack y en 2018 logramos la codificación con Dietexco. Nuestro reto es seguir siendo líderes en productos de alta calidad, con clientes satisfechos y bienestar para nuestros asociados.</p>
           </div>
-        </div>
 
+        </div>
+          <img src="logo.jpeg" alt="Equipo de Cooperativa Manantiales" loading="lazy" onerror="this.hidden = true">
       </div>
     </section>
 
@@ -303,7 +305,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
       <div class="grid-2">
         <article class="card glass">
           <h3>Misión</h3>
-          <p>Cooperativa Manantiales es una organización dedicada a la producción, ensamble, empaque y distribución de productos manufactureros, comprometida con las necesidades de nuestros clientes con altos estándares de calidad, asegurando la mejora continua, lo que garantiza nuestra permanencia en el mercado y el bienestar de nuestros asociados 
+          <p>Cooperativa Manantiales es una organización dedicada a la producción, ensamble, empaque y distribución de productos manufactureros, comprometida con las necesidades de nuestros clientes con altos estándares de calidad, asegurando la mejora continua, lo que garantiza nuestra permanencia en el mercado y el bienestar de nuestros asociados
 </p>
         </article>
         <article class="card glass">
@@ -315,12 +317,12 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 
     <!-- VALORES. EDITAR: títulos y frases. Para añadir uno, copia una tarjeta <article> completa -->
     <section class="sec" id="valores">
-      <div class="sec-head"><h2>Valores</h2></div>
+      <div class="sec-head"><h2>Objetivos SMART</h2></div>
       <div class="grid-values">
-        <article class="card value glass"><h3>Compromiso</h3><p>Cumplir lo que se promete a clientes y equipo.</p></article>
-        <article class="card value glass"><h3>Integridad</h3><p>Actuar con transparencia en cada decisión.</p></article>
-        <article class="card value glass"><h3>Innovación</h3><p>Buscar mejores formas de resolver problemas.</p></article>
-        <article class="card value glass"><h3>Colaboración</h3><p>Trabajar en conjunto para lograr más.</p></article>
+        <article class="card value glass"><h3>Primer objetivo</h3><p>Gestionar de manera eficiente los recursos que posee para la empresa para poder mantener un equilibrio (76%) entre la producción y la facturación</p></article>
+        <article class="card value glass"><h3>Segundo Objetivo</h3><p>Aumentar la producción en un 15% para así superar la meta propuesta en plazo máximo de tres meses. </p></article>
+        <article class="card value glass"><h3>Tercer Objetivo</h3><p>Reducir los costos de producción aproximadamente en un 3% con el fin de alcanzar un equilibrio entre los gatos y la facturación, todo esto en un plazo de 6 meses</p></article>
+        <article class="card value glass"><h3>Cuarto Objetivo</h3><p>Incrementar la mano de obra en las líneas de producción para generar más productividad sin aumentar los costos (Aumenta, pero no significativamente), en un plazo de un año.</p></article>
       </div>
     </section>
 
@@ -334,33 +336,34 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
         <article class="card glass" style="--c: var(--c-f)">
           <div class="dofa-h"><h3>Fortalezas</h3><span class="tag">Interno</span></div>
           <ul class="list">
-            <li>Equipo con experiencia en el sector</li>
-            <li>Relación cercana con los clientes</li>
-            <li>Procesos internos bien definidos</li>
+            <li>Alta calidad en productos</li>
+            <li>Experiencia en diversas prendas</li>
+            <li>Buena reputacion</li>
           </ul>
         </article>
         <article class="card glass" style="--c: var(--c-d)">
           <div class="dofa-h"><h3>Debilidades</h3><span class="tag">Interno</span></div>
           <ul class="list">
             <li>Recursos limitados para marketing</li>
-            <li>Dependencia de pocos clientes</li>
-            <li>Procesos que aún se hacen a mano</li>
+            <li>Trabajo con un unico cliente</li>
+            <li>Dependencia de las necesidades del cliente</li>
+            <li>Mano de obra escasa</li>
           </ul>
         </article>
         <article class="card glass" style="--c: var(--c-o)">
           <div class="dofa-h"><h3>Oportunidades</h3><span class="tag">Externo</span></div>
           <ul class="list">
-            <li>Crecimiento de la demanda en el mercado</li>
-            <li>Nuevas herramientas digitales disponibles</li>
-            <li>Alianzas posibles con otras empresas</li>
+            <li>Nuevas multinacionales interesadas</li>
+            <li>Mejora de tecnologías propias</li>
+            <li>Bajo indice de competencia</li>
           </ul>
         </article>
         <article class="card glass" style="--c: var(--c-a)">
           <div class="dofa-h"><h3>Amenazas</h3><span class="tag">Externo</span></div>
           <ul class="list">
-            <li>Competidores con más presencia</li>
-            <li>Cambios en la regulación</li>
-            <li>Variaciones en la economía</li>
+            <li>Aumento de estandares de calidad</li>
+            <li>Automatizacion de la maquinaria</li>
+            <li>Variaciones en la economía del cliente</li>
           </ul>
         </article>
       </div>
@@ -369,7 +372,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
     <!-- GALERÍA. EDITAR: pon la ruta de cada foto en src y cambia el texto del pie. Copia un bloque <figure class="shot"> para añadir más -->
     <section class="sec" id="galeria">
       <div class="sec-head">
-        <h2>Galería</h2>
+        <h2>Evidencias</h2>
         <p>Fotos del equipo, las instalaciones o los productos.</p>
       </div>
       <div class="grid-shots">
@@ -379,7 +382,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
               Foto 1
             </div>
-            <img src="" alt="Foto 1" loading="lazy" onerror="this.hidden = true">
+            <img src="f1.jfif" alt="Foto 1" loading="lazy" onerror="this.hidden = true">
           </div>
           <figcaption>Descripción de la foto 1</figcaption>
         </figure>
@@ -389,7 +392,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
               Foto 2
             </div>
-            <img src="" alt="Foto 2" loading="lazy" onerror="this.hidden = true">
+            <img src="f2.jfif" alt="Foto 2" loading="lazy" onerror="this.hidden = true">
           </div>
           <figcaption>Descripción de la foto 2</figcaption>
         </figure>
@@ -412,8 +415,9 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
       <div class="card contact glass">
         <dl>
           <div><dt>Sede</dt><dd>Carmen de Viboral, Colombia</dd></div>
-          <div><dt>Correo</dt><dd>contacto@manantiales.com</dd></div>
-          <div><dt>Teléfono</dt><dd>+57 000 000 0000</dd></div>
+          <div><dt>Gmail</dt><dd>coordinacion.coopmanantiales</dd></div>
+          <div><dt>Teléfono</dt><dd>+57 319 217 4939</dd></div>
+          <div><dt>Instagram</dt><dd>@cta.manantiales</dd></div>
         </dl>
       </div>
     </section>
@@ -422,7 +426,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 
   <!-- PIE. EDITAR: nombre y año -->
   <footer class="foot">
-    <span>© 2026 Nombre de la Empresa</span>
+    <span>© 2026 Cooperativa Manantiales</span>
     <span>Todos los derechos reservados</span>
   </footer>
 
