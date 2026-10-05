@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -185,13 +185,12 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(20px, 4vw, 44px); align-items: center; }
 .split > * { min-width: 0; }
 @media (min-width: 821px) { .split.rev { grid-template-columns: 0.9fr 1.1fr; } }
-/* Sección con 2 imágenes: la primera a todo el ancho y la segunda más pequeña debajo */
-/* Sección con 2 imágenes (diagramas): se ven completas, sin recortar */
+
 .pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
 .pair .slot { aspect-ratio: auto; min-height: 120px; background: #fff; border: 1px solid var(--line); }
 .pair .slot img { position: static; height: auto; object-fit: contain; }
 .pair .slot + .slot { width: min(100%, 630px); }
-@media (max-width: 700px) { .pair .slot { aspect-ratio: 4 / 3; } }
+
 .prose p { margin: 0 0 1em; max-width: 62ch; }
 .prose p:last-child { margin-bottom: 0; }
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
