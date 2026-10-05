@@ -191,6 +191,14 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 .card p { margin: 0; color: var(--muted); max-width: 62ch; }
 .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(20px, 4vw, 44px); align-items: center; }
 .split > * { min-width: 0; }
+@media (min-width: 821px) { .split.rev { grid-template-columns: 0.9fr 1.1fr; } }
+/* Sección con 2 imágenes: la primera a todo el ancho y la segunda más pequeña debajo */
+/* Sección con 2 imágenes (diagramas): se ven completas, sin recortar */
+.pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.pair .slot { aspect-ratio: auto; min-height: 120px; background: #fff; border: 1px solid var(--line); }
+.pair .slot img { position: static; height: auto; object-fit: contain; }
+.pair .slot + .slot { width: min(100%, 630px); }
+@media (max-width: 700px) { .pair .slot { aspect-ratio: 4 / 3; } }
 .prose p { margin: 0 0 1em; max-width: 62ch; }
 .prose p:last-child { margin-bottom: 0; }
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
@@ -289,13 +297,54 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
         <div>
           <div class="sec-head"><h2>Quiénes somos</h2></div>
           <div class="prose">
-            
+
             <p>La Cooperativa Manantiales nació en abril de 1998 con un espíritu de servicio y entrega a la comunidad. Soñábamos con ser una gran empresa confeccionista, pero el mercado nos llevó a los servicios: empezamos con la limpieza de huevos para la Empresa Avícola Nacional y crecimos con Colombiana Kimberly Colpapel y Corona, en labores de empaque y procesos logísticos.</p>
             <p>En 2012 retomamos nuestro sueño y volvimos a la confección de ropa interior y exterior, tejido plano, tejido de punto y vestidos de baño, con clientes como Leonisa, Línea Directa, Stop, Matelsa y Maagic. En 2017 iniciamos el modelo de full pack y en 2018 logramos la codificación con Dietexco. Nuestro reto es seguir siendo líderes en productos de alta calidad, con clientes satisfechos y bienestar para nuestros asociados.</p>
           </div>
 
         </div>
-          <img src="logo.jpeg" alt="Equipo de Cooperativa Manantiales" loading="lazy" onerror="this.hidden = true">
+          <img src="f3.jfif" alt="Equipo de Cooperativa Manantiales" loading="lazy" onerror="this.hidden = true">
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: título y frase corta arriba, imagen 1 a todo el ancho e imagen 2 más pequeña debajo. EDITAR: título, texto y la ruta de cada imagen en src -->
+    <section class="sec" id="seccion-1">
+      <div class="sec-head">
+        <h2>Mapa BPMN</h2>
+        <p>Muestra el flujo natural de actividades en la cooperativa.</p>
+      </div>
+      <div class="pair">
+        <figure class="slot">
+          <div class="slot-hint">
+       
+          </div>
+          <img src="Cooperativa Manantiales-Proceso General.drawio.png" alt="Imagen 1 de la sección" loading="lazy" onerror="this.hidden = true">
+        </figure>
+        <figure class="slot">
+          <div class="slot-hint">
+    
+          </div>
+          <img src="Cooperativa Manantiales-Planta de Producción.drawio.png" alt="Imagen 2 de la sección" loading="lazy" onerror="this.hidden = true">
+        </figure>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: imagen a la izquierda y texto a la derecha. EDITAR: título, texto y la ruta de la imagen en src -->
+    <section class="sec" id="seccion-2">
+      <div class="split rev">
+        <figure class="slot">
+          <div class="slot-hint">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
+            Imagen de la sección 2
+          </div>
+          <img src="mp.jfif" alt="Imagen de la sección" loading="lazy" onerror="this.hidden = true">
+        </figure>
+        <div>
+          <div class="sec-head"><h2>Mapa de procesos</h2></div>
+          <div class="prose">
+            <p>El mapa de procesos muestra la maneraen la que organizan los procesos en la cooperativa</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -402,7 +451,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
               Foto 3
             </div>
-            <img src="" alt="Foto 3" loading="lazy" onerror="this.hidden = true">
+            <img src="f4.jfif" alt="Foto 3" loading="lazy" onerror="this.hidden = true">
           </div>
           <figcaption>Descripción de la foto 3</figcaption>
         </figure>
@@ -433,4 +482,4 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 </div>
 
 </body>
-</html>
+</html> 
