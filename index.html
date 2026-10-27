@@ -202,7 +202,23 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 @media (max-width: 700px) {
   .grid-2 { grid-template-columns: minmax(0, 1fr); }
 }
+.stack { display: grid; gap: 20px; }
 
+/* Tarjetas de enlace */
+.link-card { display: block; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s; }
+.link-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.link-card .tag { display: inline-block; margin-bottom: 14px; }
+.link-card .go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--accent); }
+.link-card:hover .go { text-decoration: underline; }
+/* Comparación */
+.cmp { padding: 0; overflow-x: auto; }
+.cmp table { width: 100%; min-width: 560px; border-collapse: collapse; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.cmp tr:last-child > * { border-bottom: 0; }
+.cmp thead th { font-family: var(--f-display); font-size: 1.05rem; }
+.cmp tbody th { width: 22%; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.cmp td { color: var(--fg); }
+.cmp .dot { display: inline-block; width: 10px; height: 10px; margin-right: 10px; border-radius: 3px; background: var(--c); }
 /* Valores */
 .value h3 { font-size: 1.05rem; }
 .value p { font-size: 0.95rem; }
@@ -296,9 +312,101 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
     </section>
 
 
+    <section class="sec" id="problema">
+      <div class="sec-head">
+        <h2>El problema</h2>
+        <p>Qué situación queremos resolver y por qué ocurre.</p>
+      </div>
+
+      <div class="stack">
+        <article class="card glass" style="--c: var(--accent)">
+          <div class="dofa-h"><h3>Problema refinado</h3><span class="tag">Definición</span></div>
+          <p>El servicio de escaneo y facturacion de prendas (individuales y lotes) no esta automatizado, por lo que debe de hacerse a mano, teniendo consecuencias que afectan directamente a los intereses de la cooperativa.</p>
+        </article>
+
+        <div class="grid-2">
+          <article class="card glass" style="--c: var(--c-a)">
+            <div class="dofa-h"><h3>Consecuencias</h3><span class="tag">impacto</span></div>
+            <ul class="list">
+              <li>Toma mayor tiempo</li>
+              <li>Mayor porcentaje de error</li>
+              <li>Limitacion de facturacion de lotes</li>
+            </ul>
+          </article>
+
+
+
+
+      <div class="stack">
+        <article class="card glass" style="--c: var(--accent)">
+          <div class="dofa-h"><h3>Solucion </h3><span class="tag">Propuesta</span></div>
+          <p> como consultar facturas, detectar prendas duplicadas, validar condiciones de cierre, etc.</p>
+        </article>
+
+        
+      </div>
+    </section>
+
+        <section class="sec" id="problema">
+      <div class="sec-head">
+        <h2>Solucion</h2>
+        <p>La solucion que proponemos.</p>
+      </div>
+
+      <div class="stack">
+        <article class="card glass" style="--c: var(--accent)">
+          <div class="dofa-h"><h3>Descripcion de solucion</h3><span class="tag">Definición</span></div>
+          <p>Crear un software que automatice el proceso de factura y escaneo de las prendas y asignarlas al lote correspondiente, añadiendo herramientas utiles para los clientes</p>
+        </article>
+
+        <div class="grid-2">
+          <article class="card glass" style="--c: var(--c-a)">
+            <div class="dofa-h"><h3>Como afecta al proceso actual</h3><span class="tag">impacto</span></div>
+            <ul class="list">
+              <li>Reduce los tiempos en escaneo y facturacion</li>
+              <li>Disminuye el porcentaje de error por intervencion humana</li>
+              <li>Mas cantidad de funcionalidades</li>
+            </ul>
+          </article>
+
+        <div class="grid-3">
+          <article class="card glass" style="--c: var(--c-a)">
+            <div class="dofa-h"><h3>Funcionalidades principales</h3></div>
+            <ul class="list">
+              <li>Consultas(Prendas duplicadas, facturas generadas, ordenes pendientes)</li>
+              <li>Verificar errores e inconsistencias </li>
+              <li>Generar y gestionar Facturas</li>
+            </ul>
+          </article>
+
+        
+      </div>
+    </section>
+
+    <section class="sec" id="historias">
+      <div class="sec-head">
+        <h2>Historias de usuario</h2>
+        <p>Consulta el backlog y el mapa de historias del proyecto.</p>
+      </div>
+      <div class="grid-2">
+        <a class="card glass link-card" href="https://andreewk.atlassian.net/jira/software/projects/CM/boards/3/backlog" target="_blank" rel="noopener">
+          <span class="tag">Jira</span>
+          <h3>Historias de usuario</h3>
+          <p>Backlog del proyecto con todas las historias de usuario.</p>
+          <span class="go">Abrir en Jira →</span>
+        </a>
+        <a class="card glass link-card" href="https://miro.com/app/board/uXjVEaCKaoE=/" target="_blank" rel="noopener">
+          <span class="tag">Miro</span>
+          <h3>Mapa de historias</h3>
+          <p>Tablero con el mapa de historias de usuario.</p>
+          <span class="go">Abrir en Miro →</span>
+        </a>
+      </div>
+    </section>
+
     <section class="sec" id="seccion-1">
       <div class="sec-head">
-        <h2>Mapa BPMN</h2>
+        <h2>Mapa BPMN (As is)</h2>
         <p>Muestra el flujo natural de actividades en la cooperativa.</p>
       </div>
       <div class="pair">
@@ -313,6 +421,27 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
     
           </div>
           <img src="Cooperativa Manantiales-Planta de Producción.drawio.png" alt="Imagen 2 de la sección" loading="lazy" onerror="this.hidden = true">
+        </figure>
+      </div>
+    </section>
+
+    <section class="sec" id="seccion-1">
+      <div class="sec-head">
+        <h2>Mapa BPMN (To Be)</h2>
+        <p>Muestra el flujo natural de actividades en la cooperativa.</p>
+      </div>
+      <div class="pair">
+        <figure class="slot">
+          <div class="slot-hint">
+       
+          </div>
+          <img src="Cooperativa ManantialesTobejpg.jpg"Imagen 1 de la sección" loading="lazy" onerror="this.hidden = true">
+        </figure>
+        <figure class="slot">
+          <div class="slot-hint">
+    
+          </div>
+          <img src="escaneoyfacturacion.drawio.png" alt="Imagen 2 de la sección" loading="lazy" onerror="this.hidden = true">
         </figure>
       </div>
     </section>
@@ -334,6 +463,45 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
         </div>
       </div>
     </section>
+
+        <section class="sec" id="comparacion">
+      <div class="sec-head">
+        <h2>Comparación As Is vs To Be</h2>
+        <p>Qué cambia entre el proceso actual y el proceso propuesto.</p>
+      </div>
+
+      <div class="card glass cmp">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Aspecto</th>
+              <th scope="col"><span class="dot" style="--c: var(--c-d)"></span>As Is (actual)</th>
+              <th scope="col"><span class="dot" style="--c: var(--c-f)"></span>To Be (propuesto)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Diagrama general</th>
+              <td>Diagrama actual sin modificaciones.</td>
+              <td>Diagrama con la solucion implementada.</td>
+            </tr>
+            <tr>
+              <th scope="row">Subprocesos</th>
+              <td>Unicamente el de planta de produccion.</td>
+              <td>Ademas del de planta de produccion tiene el de Escaneo y facturacion</td>
+            </tr>
+            <tr>
+              <th scope="row">Escaneo y facturacion</th>
+              <td>Estan separados en el diagrama general</td>
+              <td>Integrado en un subproceso junto al software</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+        
 
     <section class="sec" id="proposito">
       <div class="sec-head"><h2>Misión y visión</h2></div>
