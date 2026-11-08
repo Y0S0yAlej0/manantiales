@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Manantiales</title>
-  
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap">
@@ -103,6 +103,7 @@ img { max-width: 100%; }
 [hidden] { display: none !important; }
 a { color: var(--accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+code { font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace; font-size: 0.88em; padding: 1px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--fg); overflow-wrap: anywhere; }
 
 /* Fondo: manchas de color que dan algo que desenfocar al vidrio */
 .bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
@@ -185,6 +186,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(20px, 4vw, 44px); align-items: center; }
 .split > * { min-width: 0; }
 @media (min-width: 821px) { .split.rev { grid-template-columns: 0.9fr 1.1fr; } }
+.photo { width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: var(--shadow); }
 
 .pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
 .pair .slot { aspect-ratio: auto; min-height: 120px; background: #fff; border: 1px solid var(--line); }
@@ -194,10 +196,12 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 .prose p { margin: 0 0 1em; max-width: 62ch; }
 .prose p:last-child { margin-bottom: 0; }
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .grid-values { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px; }
 .grid-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 20px; }
 @media (max-width: 820px) {
   .split { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 700px) {
   .grid-2 { grid-template-columns: minmax(0, 1fr); }
@@ -243,13 +247,37 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 .shot { margin: 0; display: grid; gap: 10px; }
 .shot figcaption { font-size: 0.9rem; color: var(--muted); }
 
+/* Capturas de historias de usuario (se muestran completas, sin recortar) */
+.slot.doc { aspect-ratio: auto; min-height: 220px; background: #fff; border: 1px solid var(--line); }
+.slot.doc img { position: relative; z-index: 1; height: auto; object-fit: contain; background: #fff; }
+.slot.doc a { display: block; position: relative; z-index: 1; cursor: zoom-in; }
+
+/* Pasos del flujo */
+.step .num { display: inline-grid; place-items: center; width: 34px; height: 34px; margin-bottom: 12px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-family: var(--f-display); font-weight: 700; }
+
+/* Historias de usuario */
+.hu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 20px; }
+.hu { display: grid; gap: 14px; align-content: start; }
+.hu .dofa-h { margin-bottom: 0; }
+.hu .how { padding: 14px 16px; border-radius: 14px; background: var(--accent-soft); }
+.hu .how strong { display: block; margin-bottom: 4px; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.hu .how p { color: var(--fg); font-size: 0.95rem; }
+.hu .note { font-size: 0.88rem; color: var(--muted); }
+
+/* Terminal (demo del MVP) */
+.term { margin: 0; padding: 22px 24px; border-radius: 18px; background: #0b1514; color: #d3e8e4; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: var(--shadow); overflow-x: auto; font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace; font-size: 0.84rem; line-height: 1.6; white-space: pre; tab-size: 4; }
+.term .dim { color: #7f9a96; }
+.term .in { color: #e5b34c; }
+.term .ok { color: #52c9b4; }
+.term .err { color: #ee8582; }
+
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 28px 40px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
+
 /* Contacto */
 .contact dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 22px 32px; margin: 0; }
 .contact dl > div { min-width: 0; }
 .contact dt { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .contact dd { margin: 4px 0 0; font-weight: 500; overflow-wrap: anywhere; user-select: text; }
-
-.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 28px 40px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -263,10 +291,14 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
       <a class="brand" href="#inicio">Manantiales</a>
       <ul>
         <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#problema">Problema</a></li>
+        <li><a href="#solucion">Solución</a></li>
+        <li><a href="#mvp">MVP</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#historias">Historias</a></li>
+        <li><a href="#procesos">Procesos</a></li>
         <li><a href="#proposito">Misión y visión</a></li>
-        <li><a href="#valores">Valores</a></li>
         <li><a href="#dofa">DOFA</a></li>
-        <li><a href="#galeria">Galería</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -276,10 +308,12 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 
     <section class="hero" id="inicio">
       <div>
-        <p class="kicker">Perfil institucional</p>
+        <p class="kicker">Perfil institucional · Proyecto MVP</p>
         <h1>Cooperativa Manantiales</h1>
+        <p class="lead">Un MVP para automatizar el escaneo de prendas y el control de lotes en la bodega: menos tiempo y menos errores.</p>
         <div class="actions">
-          <a class="btn primary" href="#nosotros">Conócenos</a>
+          <a class="btn primary" href="#solucion">Ver la solución</a>
+          <a class="btn ghost" href="#nosotros">Conócenos</a>
           <a class="btn ghost" href="#contacto">Contacto</a>
         </div>
       </div>
@@ -291,7 +325,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
     <dl class="facts glass">
       <div><dt>Fundación</dt><dd>Abril 1998</dd></div>
       <div><dt>Sector</dt><dd>Mercado de servicios</dd></div>
-      <div><dt>Sede</dt><dd>Carmen de viboral, Colombia</dd></div>
+      <div><dt>Sede</dt><dd>Carmen de Viboral, Colombia</dd></div>
       <div><dt>Equipo</dt><dd>70 personas</dd></div>
     </dl>
 
@@ -301,17 +335,16 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
         <div>
           <div class="sec-head"><h2>Quiénes somos</h2></div>
           <div class="prose">
-
             <p>La Cooperativa Manantiales nació en abril de 1998 con un espíritu de servicio y entrega a la comunidad. Soñábamos con ser una gran empresa confeccionista, pero el mercado nos llevó a los servicios: empezamos con la limpieza de huevos para la Empresa Avícola Nacional y crecimos con Colombiana Kimberly Colpapel y Corona, en labores de empaque y procesos logísticos.</p>
             <p>En 2012 retomamos nuestro sueño y volvimos a la confección de ropa interior y exterior, tejido plano, tejido de punto y vestidos de baño, con clientes como Leonisa, Línea Directa, Stop, Matelsa y Maagic. En 2017 iniciamos el modelo de full pack y en 2018 logramos la codificación con Dietexco. Nuestro reto es seguir siendo líderes en productos de alta calidad, con clientes satisfechos y bienestar para nuestros asociados.</p>
           </div>
-
         </div>
-          <img src="f3.jfif" alt="Equipo de Cooperativa Manantiales" loading="lazy" onerror="this.hidden = true">
+        <img class="photo" src="f3.jfif" alt="Equipo de Cooperativa Manantiales" loading="lazy" onerror="this.hidden = true">
       </div>
     </section>
 
 
+    <!-- ===================== PROBLEMA ===================== -->
     <section class="sec" id="problema">
       <div class="sec-head">
         <h2>El problema</h2>
@@ -321,78 +354,298 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
       <div class="stack">
         <article class="card glass" style="--c: var(--accent)">
           <div class="dofa-h"><h3>Problema refinado</h3><span class="tag">Definición</span></div>
-          <p>El servicio de escaneo y facturacion de prendas (individuales y lotes) no esta automatizado, por lo que debe de hacerse a mano, teniendo consecuencias que afectan directamente a los intereses de la cooperativa.</p>
+          <p>El servicio de escaneo y facturación de prendas (individuales y lotes) no está automatizado, por lo que debe hacerse a mano, teniendo consecuencias que afectan directamente a los intereses de la cooperativa.</p>
         </article>
 
         <div class="grid-2">
           <article class="card glass" style="--c: var(--c-a)">
-            <div class="dofa-h"><h3>Consecuencias</h3><span class="tag">impacto</span></div>
+            <div class="dofa-h"><h3>Consecuencias</h3><span class="tag">Impacto</span></div>
             <ul class="list">
               <li>Toma mayor tiempo</li>
               <li>Mayor porcentaje de error</li>
-              <li>Limitacion de facturacion de lotes</li>
+              <li>Limitación de facturación de lotes</li>
             </ul>
           </article>
 
-                  <article class="card glass" style="--c: var(--c-o)">
+          <article class="card glass" style="--c: var(--c-o)">
             <div class="dofa-h"><h3>Alcance</h3><span class="tag">Límites</span></div>
             <ul class="list">
-              <li>El alcance de la solucion sera solo para el area de la bodega, la cual es la encargada del prcesos de factoracion y escaneo de prendas</li>
-
+              <li>El alcance de la solución será solo para el área de la bodega, la cual es la encargada del proceso de facturación y escaneo de prendas</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-        <section class="sec" id="problema">
+
+    <!-- ===================== SOLUCIÓN ===================== -->
+    <section class="sec" id="solucion">
       <div class="sec-head">
-        <h2>Solucion</h2>
-        <p>La solucion que proponemos.</p>
+        <h2>La solución</h2>
+        <p>Cómo resolvimos el problema planteado.</p>
       </div>
 
       <div class="stack">
         <article class="card glass" style="--c: var(--accent)">
-          <div class="dofa-h"><h3>Descripcion de solucion</h3><span class="tag">Definición</span></div>
-          <p>Crear un software que automatice el proceso de factura y escaneo de las prendas y asignarlas al lote correspondiente, añadiendo herramientas utiles para los clientes</p>
+          <div class="dofa-h"><h3>Descripción de la solución</h3><span class="tag">Definición</span></div>
+          <p>Crear un software que automatice el proceso de escaneo y facturación de las prendas y las asigne al lote correspondiente, añadiendo herramientas útiles para los clientes. Para demostrarlo construimos un MVP: un programa en Python con el que el operario crea lotes, escanea prendas y cierra el lote solo cuando cumple exactamente lo que se pidió.</p>
         </article>
 
-        <div class="grid-2">
-          <article class="card glass" style="--c: var(--c-a)">
-            <div class="dofa-h"><h3>Como afecta al proceso actual</h3><span class="tag">impacto</span></div>
-            <ul class="list">
-              <li>Reduce los tiempos en escaneo y facturacion</li>
-              <li>Disminuye el porcentaje de error por intervencion humana </li>
-              <li>Mas cantidad de funcionalidades</li>
-            </ul>
-          </article>
-
-          
-
         <div class="grid-3">
-          <article class="card glass" style="--c: var(--c-a)">
-            <div class="dofa-h"><h3>Funcionalidades principales</h3></div>
-            <ul class="list">
-              <li>Consultas(Prendas duplicadas, facturas generadas, ordenes pendientes)</li>
-              <li>Verificar errores e inconsistencias </li>
-              <li>Generar y gestionar Facturas</li>
-            </ul>
+          <article class="card glass" style="--c: var(--c-f)">
+            <div class="dofa-h"><h3>Menos tiempo</h3></div>
+            <p>El operario escribe o escanea el código y el sistema responde al instante: acepta la prenda, la asigna al lote y muestra el avance (por lote y por tipo) con una barra de progreso.</p>
           </article>
+          <article class="card glass" style="--c: var(--c-o)">
+            <div class="dofa-h"><h3>Menos errores</h3></div>
+            <p>El sistema rechaza códigos repetidos, tipos de prenda que el lote no pide y prendas de más. Los errores se detectan al escanear, no al final.</p>
+          </article>
+          <article class="card glass" style="--c: var(--c-d)">
+            <div class="dofa-h"><h3>Lotes controlados</h3></div>
+            <p>Cada lote define cuántas prendas de cada tipo necesita. No se puede cerrar hasta cumplir esas cantidades exactas, y una vez cerrado ya no se modifica.</p>
+          </article>
+        </div>
 
-        
+        <div class="card glass cmp">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Situación</th>
+                <th scope="col"><span class="dot" style="--c: var(--c-a)"></span>Antes (a mano)</th>
+                <th scope="col"><span class="dot" style="--c: var(--c-f)"></span>Con el MVP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Registro de prendas</th>
+                <td>Se anota y se cuenta manualmente.</td>
+                <td>Cada prenda se registra con código, nombre y tipo, y se asigna al lote automáticamente.</td>
+              </tr>
+              <tr>
+                <th scope="row">Prendas duplicadas</th>
+                <td>Pueden pasar desapercibidas hasta el final.</td>
+                <td>Se detecta el código repetido en cualquier lote y se avisa en el momento.</td>
+              </tr>
+              <tr>
+                <th scope="row">Conteo por lote</th>
+                <td>Revisión manual de cantidades por tipo.</td>
+                <td>El sistema muestra escaneadas/requeridas por tipo y qué falta o sobra.</td>
+              </tr>
+              <tr>
+                <th scope="row">Cierre del lote</th>
+                <td>Depende de que alguien revise que todo esté bien.</td>
+                <td>Solo cierra si las cantidades son exactas; si no, indica qué condiciones faltan.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <article class="card glass" style="--c: var(--c-a)">
+          <div class="dofa-h"><h3>Funcionalidades principales</h3><span class="tag">Visión del producto</span></div>
+          <ul class="list">
+            <li>Consultas (prendas duplicadas, facturas generadas, órdenes pendientes)</li>
+            <li>Verificar errores e inconsistencias</li>
+            <li>Generar y gestionar facturas</li>
+          </ul>
+        </article>
       </div>
     </section>
 
+
+    <!-- ===================== MVP ===================== -->
+    <section class="sec" id="mvp">
+      <div class="sec-head">
+        <h2>El MVP: cómo funciona</h2>
+        <p>Un programa de consola en Python, hecho con programación orientada a objetos y dividido en varios módulos. Se ejecuta con <code>python main.py</code>.</p>
+      </div>
+
+      <div class="stack">
+        <div class="grid-values">
+          <article class="card value glass step"><span class="num">1</span><h3>Crear lote</h3><p>Se indica cuántas prendas de cada tipo (pantalón, camisa, falda, buzo) debe tener el lote.</p></article>
+          <article class="card value glass step"><span class="num">2</span><h3>Escanear</h3><p>Se escanea cada prenda con su código, nombre y tipo. El sistema la valida y la agrega al lote.</p></article>
+          <article class="card value glass step"><span class="num">3</span><h3>Validar</h3><p>Se consulta el progreso, se editan o eliminan prendas y se revisa qué falta o sobra.</p></article>
+          <article class="card value glass step"><span class="num">4</span><h3>Cerrar</h3><p>Con las cantidades exactas, el lote se cierra y queda bloqueado contra cambios.</p></article>
+        </div>
+
+        <div class="grid-2">
+          <article class="card glass" style="--c: var(--c-f)">
+            <div class="dofa-h"><h3>Reglas que aplica el sistema</h3><span class="tag">Validaciones</span></div>
+            <ul class="list">
+              <li>Un código de prenda no puede repetirse en ningún lote (se normaliza a mayúsculas y sin espacios).</li>
+              <li>Un lote no acepta tipos de prenda que no pide.</li>
+              <li>Un lote no acepta más prendas de un tipo que las requeridas.</li>
+              <li>No se puede crear un lote sin prendas.</li>
+              <li>Un lote solo se cierra con las cantidades exactas.</li>
+              <li>Un lote cerrado no se puede editar ni modificar.</li>
+            </ul>
+          </article>
+
+          <article class="card glass" style="--c: var(--c-o)">
+            <div class="dofa-h"><h3>Menú de la aplicación</h3><span class="tag">Consola</span></div>
+            <ul class="list">
+              <li><code>1</code> Crear lote</li>
+              <li><code>2</code> Escanear prendas</li>
+              <li><code>3</code> Ver progreso</li>
+              <li><code>4</code> Ver lotes abiertos</li>
+              <li><code>5</code> Editar prenda</li>
+              <li><code>6</code> Eliminar prenda</li>
+              <li><code>7</code> Cerrar lote</li>
+              <li><code>8</code> Lotes cerrados</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="card glass cmp">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Archivo</th>
+                <th scope="col">Clase</th>
+                <th scope="col">Qué hace</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><code>main.py</code></th>
+                <td>—</td>
+                <td>Punto de entrada: arranca el menú con el sistema de escaneo.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>menu.py</code></th>
+                <td><code>MenuConsola</code></td>
+                <td>Interfaz por consola: menús, validación de lo que escribe el operario, mensajes de error y barra de progreso.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>sistema_escaneo.py</code></th>
+                <td><code>SistemaEscaneo</code></td>
+                <td>Maneja todos los lotes, busca prendas por código para evitar duplicados y calcula el progreso general.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>lote.py</code></th>
+                <td><code>Lote</code></td>
+                <td>Guarda las prendas y las condiciones de cierre, controla los cupos por tipo y calcula diferencias (faltan/sobran).</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>prenda.py</code></th>
+                <td><code>Prenda</code></td>
+                <td>Representa una prenda: código (identificador), nombre y tipo.</td>
+              </tr>
+              <tr>
+                <th scope="row"><code>tipos.py</code></th>
+                <td><code>TipoPrenda</code></td>
+                <td>Enumeración con los tipos: Pantalon, Camisa, Falda y Buzo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-2">
+          <article class="card glass" style="--c: var(--c-f)">
+            <div class="dofa-h"><h3>Incluido en el MVP</h3><span class="tag">Hoy</span></div>
+            <ul class="list">
+              <li>Creación de lotes con condiciones por tipo de prenda</li>
+              <li>Escaneo con detección de duplicados</li>
+              <li>Control de cupos por tipo</li>
+              <li>Edición y eliminación de prendas en lotes abiertos</li>
+              <li>Validación y cierre de lotes</li>
+              <li>Consulta de progreso y de lotes abiertos y cerrados</li>
+            </ul>
+          </article>
+          <article class="card glass" style="--c: var(--c-d)">
+            <div class="dofa-h"><h3>Siguientes versiones</h3><span class="tag">Pendiente</span></div>
+            <ul class="list">
+              <li>Generación y gestión de facturas</li>
+              <li>Catálogo de códigos reconocidos por la cooperativa</li>
+              <li>Registro de fecha, hora y responsable al cerrar</li>
+              <li>Guardado de datos (hoy viven en memoria mientras corre el programa)</li>
+              <li>Interfaz gráfica y lector de códigos de barras</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- ===================== HISTORIAS DE USUARIO ===================== -->
     <section class="sec" id="historias">
       <div class="sec-head">
-        <h2>Historias de usuario</h2>
-        <p>Consulta el backlog y el mapa de historias del proyecto.</p>
+        <h2>Historias de usuario del MVP</h2>
+        <p>Estas son las historias que decidimos implementar y cómo se cubre cada una en el programa. Haz clic en una captura para verla en grande.</p>
       </div>
-      <div class="grid-2">
+
+      <div class="hu-grid">
+
+        <article class="card glass hu" style="--c: var(--c-o)">
+          <div class="dofa-h"><h3>HU-01 · Consultar órdenes pendientes</h3><span class="tag">Must</span></div>
+          <figure class="slot doc">
+            <div class="slot-hint">Captura HU-01<small>Guarda la imagen como hu-01.png</small></div>
+            <a href="hu-01.png" target="_blank" rel="noopener"><img src="hu-01.png" alt="Captura de la historia de usuario HU-01: Consultar órdenes pendientes" loading="lazy" onerror="this.closest('a').hidden = true"></a>
+          </figure>
+          <div class="how">
+            <strong>Cómo lo resuelve el MVP</strong>
+            <p>La opción <code>4</code> (Ver lotes abiertos) lista los lotes que aún necesitan procesamiento con su avance. Si no hay ninguno, muestra el mensaje «No hay lotes abiertos.».</p>
+          </div>
+        </article>
+
+        <article class="card glass hu" style="--c: var(--c-o)">
+          <div class="dofa-h"><h3>HU-02 · Validar el código escaneado</h3><span class="tag">Must</span></div>
+          <figure class="slot doc">
+            <div class="slot-hint">Captura HU-02<small>Guarda la imagen como hu-02.png</small></div>
+            <a href="hu-02.png" target="_blank" rel="noopener"><img src="hu-02.png" alt="Captura de la historia de usuario HU-02: Validar el código escaneado" loading="lazy" onerror="this.closest('a').hidden = true"></a>
+          </figure>
+          <div class="how">
+            <strong>Cómo lo resuelve el MVP</strong>
+            <p>Al escanear, el sistema rechaza códigos vacíos y normaliza el código (sin espacios y en mayúsculas) antes de aceptarlo. Si el código ya existe, no se registra como un escaneo válido.</p>
+          </div>
+          <p class="note">Pendiente para una siguiente versión: comparar contra un catálogo de códigos reconocidos.</p>
+        </article>
+
+        <article class="card glass hu" style="--c: var(--c-o)">
+          <div class="dofa-h"><h3>HU-03 · Detectar prendas duplicadas</h3><span class="tag">Must</span></div>
+          <figure class="slot doc">
+            <div class="slot-hint">Captura HU-03<small>Guarda la imagen como hu-03.png</small></div>
+            <a href="hu-03.png" target="_blank" rel="noopener"><img src="hu-03.png" alt="Captura de la historia de usuario HU-03: Detectar prendas duplicadas" loading="lazy" onerror="this.closest('a').hidden = true"></a>
+          </figure>
+          <div class="how">
+            <strong>Cómo lo resuelve el MVP</strong>
+            <p>El sistema busca el código en todos los lotes. Si ya existe, muestra una advertencia con la prenda y el lote donde está, no aumenta el conteo y deja elegir entre cancelar o reemplazar los datos de la existente. Si no existe, la prenda se registra normalmente.</p>
+          </div>
+        </article>
+
+        <article class="card glass hu" style="--c: var(--c-o)">
+          <div class="dofa-h"><h3>HU-04 · Validar las condiciones de cierre</h3><span class="tag">Must</span></div>
+          <figure class="slot doc">
+            <div class="slot-hint">Captura HU-04<small>Guarda la imagen como hu-04.png</small></div>
+            <a href="hu-04.png" target="_blank" rel="noopener"><img src="hu-04.png" alt="Captura de la historia de usuario HU-04: Validar las condiciones de cierre" loading="lazy" onerror="this.closest('a').hidden = true"></a>
+          </figure>
+          <div class="how">
+            <strong>Cómo lo resuelve el MVP</strong>
+            <p>Al intentar cerrar, el sistema compara lo escaneado contra lo requerido por tipo. Si todo cuadra, indica que el lote cumple las condiciones; si no, señala exactamente qué faltan y qué sobran (por ejemplo: «faltan 1 Pantalon, 1 Camisa»).</p>
+          </div>
+        </article>
+
+        <article class="card glass hu" style="--c: var(--c-o)">
+          <div class="dofa-h"><h3>HU-13 · Cerrar el despacho</h3><span class="tag">MVP</span></div>
+          <figure class="slot doc">
+            <div class="slot-hint">Captura HU-13<small>Guarda la imagen como hu-13.png</small></div>
+            <a href="hu-13.png" target="_blank" rel="noopener"><img src="hu-13.png" alt="Captura de la historia de usuario HU-13: Cerrar el despacho" loading="lazy" onerror="this.closest('a').hidden = true"></a>
+          </figure>
+          <div class="how">
+            <strong>Cómo lo resuelve el MVP</strong>
+            <p>La opción <code>7</code> (Cerrar lote) valida las condiciones, pide confirmación y cambia el lote a cerrado, con lo que ya no se puede mover ni editar. Si no cumple, impide el cierre, conserva el estado y explica qué condiciones faltan.</p>
+          </div>
+          <p class="note">Pendiente para una siguiente versión: registrar fecha, hora y responsable del cierre.</p>
+        </article>
+
+      </div>
+
+      <div class="grid-2" style="margin-top: 20px">
         <a class="card glass link-card" href="https://andreewk.atlassian.net/jira/software/projects/CM/boards/3/backlog" target="_blank" rel="noopener">
           <span class="tag">Jira</span>
-          <h3>Historias de usuario</h3>
-          <p>Backlog del proyecto con todas las historias de usuario.</p>
+          <h3>Backlog completo</h3>
+          <p>Todas las historias de usuario del proyecto, incluidas las que no entraron en el MVP.</p>
           <span class="go">Abrir en Jira →</span>
         </a>
         <a class="card glass link-card" href="https://miro.com/app/board/uXjVEaCKaoE=/" target="_blank" rel="noopener">
@@ -404,44 +657,38 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
       </div>
     </section>
 
-    <section class="sec" id="seccion-1">
+
+    <!-- ===================== PROCESOS ===================== -->
+    <section class="sec" id="procesos">
       <div class="sec-head">
-        <h2>Mapa BPMN (As is)</h2>
+        <h2>Mapa BPMN (As Is)</h2>
         <p>Muestra el flujo natural de actividades en la cooperativa.</p>
       </div>
       <div class="pair">
         <figure class="slot">
-          <div class="slot-hint">
-       
-          </div>
-          <img src="Cooperativa Manantiales-Proceso General.drawio.png" alt="Imagen 1 de la sección" loading="lazy" onerror="this.hidden = true">
+          <div class="slot-hint"></div>
+          <img src="Cooperativa Manantiales-Proceso General.drawio.png" alt="Diagrama BPMN As Is: proceso general" loading="lazy" onerror="this.hidden = true">
         </figure>
         <figure class="slot">
-          <div class="slot-hint">
-    
-          </div>
-          <img src="Cooperativa Manantiales-Planta de Producción.drawio.png" alt="Imagen 2 de la sección" loading="lazy" onerror="this.hidden = true">
+          <div class="slot-hint"></div>
+          <img src="Cooperativa Manantiales-Planta de Producción.drawio.png" alt="Diagrama BPMN As Is: planta de producción" loading="lazy" onerror="this.hidden = true">
         </figure>
       </div>
     </section>
 
-    <section class="sec" id="seccion-1">
+    <section class="sec" id="tobe">
       <div class="sec-head">
         <h2>Mapa BPMN (To Be)</h2>
-        <p>Muestra el flujo natural de actividades en la cooperativa.</p>
+        <p>Muestra el flujo de actividades con la solución implementada.</p>
       </div>
       <div class="pair">
         <figure class="slot">
-          <div class="slot-hint">
-       
-          </div>
-          <img src="Cooperativa ManantialesTobejpg.jpg"Imagen 1 de la sección" loading="lazy" onerror="this.hidden = true">
+          <div class="slot-hint"></div>
+          <img src="Cooperativa ManantialesTobejpg.jpg" alt="Diagrama BPMN To Be: proceso general" loading="lazy" onerror="this.hidden = true">
         </figure>
         <figure class="slot">
-          <div class="slot-hint">
-    
-          </div>
-          <img src="escaneoyfacturacion.drawio.png" alt="Imagen 2 de la sección" loading="lazy" onerror="this.hidden = true">
+          <div class="slot-hint"></div>
+          <img src="escaneoyfacturacion.drawio.png" alt="Diagrama BPMN To Be: escaneo y facturación" loading="lazy" onerror="this.hidden = true">
         </figure>
       </div>
     </section>
@@ -451,20 +698,20 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
         <figure class="slot">
           <div class="slot-hint">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>
-            Imagen de la sección 2
+            Mapa de procesos
           </div>
-          <img src="mp.jfif" alt="Imagen de la sección" loading="lazy" onerror="this.hidden = true">
+          <img src="mp.jfif" alt="Mapa de procesos de la cooperativa" loading="lazy" onerror="this.hidden = true">
         </figure>
         <div>
           <div class="sec-head"><h2>Mapa de procesos</h2></div>
           <div class="prose">
-            <p>El mapa de procesos muestra la maneraen la que organizan los procesos en la cooperativa</p>
+            <p>El mapa de procesos muestra la manera en la que se organizan los procesos en la cooperativa.</p>
           </div>
         </div>
       </div>
     </section>
 
-        <section class="sec" id="comparacion">
+    <section class="sec" id="comparacion">
       <div class="sec-head">
         <h2>Comparación As Is vs To Be</h2>
         <p>Qué cambia entre el proceso actual y el proceso propuesto.</p>
@@ -483,33 +730,31 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
             <tr>
               <th scope="row">Diagrama general</th>
               <td>Diagrama actual sin modificaciones.</td>
-              <td>Diagrama con la solucion implementada.</td>
+              <td>Diagrama con la solución implementada.</td>
             </tr>
             <tr>
               <th scope="row">Subprocesos</th>
-              <td>Unicamente el de planta de produccion.</td>
-              <td>Ademas del de planta de produccion tiene el de Escaneo y facturacion</td>
+              <td>Únicamente el de planta de producción.</td>
+              <td>Además del de planta de producción tiene el de escaneo y facturación.</td>
             </tr>
             <tr>
-              <th scope="row">Escaneo y facturacion</th>
-              <td>Estan separados en el diagrama general</td>
-              <td>Integrado en un subproceso junto al software</td>
+              <th scope="row">Escaneo y facturación</th>
+              <td>Están separados en el diagrama general.</td>
+              <td>Integrado en un subproceso junto al software.</td>
             </tr>
-
           </tbody>
         </table>
       </div>
     </section>
 
-        
 
+    <!-- ===================== INSTITUCIONAL ===================== -->
     <section class="sec" id="proposito">
       <div class="sec-head"><h2>Misión y visión</h2></div>
       <div class="grid-2">
         <article class="card glass">
           <h3>Misión</h3>
-          <p>Cooperativa Manantiales es una organización dedicada a la producción, ensamble, empaque y distribución de productos manufactureros, comprometida con las necesidades de nuestros clientes con altos estándares de calidad, asegurando la mejora continua, lo que garantiza nuestra permanencia en el mercado y el bienestar de nuestros asociados
-</p>
+          <p>Cooperativa Manantiales es una organización dedicada a la producción, ensamble, empaque y distribución de productos manufactureros, comprometida con las necesidades de nuestros clientes con altos estándares de calidad, asegurando la mejora continua, lo que garantiza nuestra permanencia en el mercado y el bienestar de nuestros asociados.</p>
         </article>
         <article class="card glass">
           <h3>Visión</h3>
@@ -517,14 +762,14 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
         </article>
       </div>
     </section>
-    
+
     <section class="sec" id="valores">
       <div class="sec-head"><h2>Objetivos SMART</h2></div>
       <div class="grid-values">
-        <article class="card value glass"><h3>Primer objetivo</h3><p>Gestionar de manera eficiente los recursos que posee para la empresa para poder mantener un equilibrio (76%) entre la producción y la facturación</p></article>
-        <article class="card value glass"><h3>Segundo Objetivo</h3><p>Aumentar la producción en un 15% para así superar la meta propuesta en plazo máximo de tres meses. </p></article>
-        <article class="card value glass"><h3>Tercer Objetivo</h3><p>Reducir los costos de producción aproximadamente en un 3% con el fin de alcanzar un equilibrio entre los gatos y la facturación, todo esto en un plazo de 6 meses</p></article>
-        <article class="card value glass"><h3>Cuarto Objetivo</h3><p>Incrementar la mano de obra en las líneas de producción para generar más productividad sin aumentar los costos (Aumenta, pero no significativamente), en un plazo de un año.</p></article>
+        <article class="card value glass"><h3>Primer objetivo</h3><p>Gestionar de manera eficiente los recursos que posee la empresa para poder mantener un equilibrio (76%) entre la producción y la facturación.</p></article>
+        <article class="card value glass"><h3>Segundo objetivo</h3><p>Aumentar la producción en un 15% para así superar la meta propuesta en un plazo máximo de tres meses.</p></article>
+        <article class="card value glass"><h3>Tercer objetivo</h3><p>Reducir los costos de producción aproximadamente en un 3% con el fin de alcanzar un equilibrio entre los gastos y la facturación, todo esto en un plazo de 6 meses.</p></article>
+        <article class="card value glass"><h3>Cuarto objetivo</h3><p>Incrementar la mano de obra en las líneas de producción para generar más productividad sin aumentar los costos (aumenta, pero no significativamente), en un plazo de un año.</p></article>
       </div>
     </section>
 
@@ -539,14 +784,14 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
           <ul class="list">
             <li>Alta calidad en productos</li>
             <li>Experiencia en diversas prendas</li>
-            <li>Buena reputacion</li>
+            <li>Buena reputación</li>
           </ul>
         </article>
         <article class="card glass" style="--c: var(--c-d)">
           <div class="dofa-h"><h3>Debilidades</h3><span class="tag">Interno</span></div>
           <ul class="list">
             <li>Recursos limitados para marketing</li>
-            <li>Trabajo con un unico cliente</li>
+            <li>Trabajo con un único cliente</li>
             <li>Dependencia de las necesidades del cliente</li>
             <li>Mano de obra escasa</li>
           </ul>
@@ -556,14 +801,14 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
           <ul class="list">
             <li>Nuevas multinacionales interesadas</li>
             <li>Mejora de tecnologías propias</li>
-            <li>Bajo indice de competencia</li>
+            <li>Bajo índice de competencia</li>
           </ul>
         </article>
         <article class="card glass" style="--c: var(--c-a)">
           <div class="dofa-h"><h3>Amenazas</h3><span class="tag">Externo</span></div>
           <ul class="list">
-            <li>Aumento de estandares de calidad</li>
-            <li>Automatizacion de la maquinaria</li>
+            <li>Aumento de estándares de calidad</li>
+            <li>Automatización de la maquinaria</li>
             <li>Variaciones en la economía del cliente</li>
           </ul>
         </article>
@@ -574,7 +819,7 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
     <section class="sec" id="galeria">
       <div class="sec-head">
         <h2>Evidencias</h2>
-        <p>Fotos del equipo de produccion e instalaciones.</p>
+        <p>Fotos del equipo de producción e instalaciones.</p>
       </div>
       <div class="grid-shots">
         <figure class="shot">
@@ -629,4 +874,4 @@ h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); font-weight: 700; }
 </div>
 
 </body>
-</html> 
+</html>
